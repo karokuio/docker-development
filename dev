@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+KAROKU_HOME=${1:-$(pwd)}
+
+docker-compose run \
+  -v `pwd`:/home/user/ws \
+  -v $HOME/.gitconfig:/home/user/.gitconfig \
+  -v $(pwd)/.idea:/home/user/.idea/ \
+  -v /tmp/.X11-unix:/tmp/.X11-unix \
+  -v $KAROKU_HOME:/home/user/ws \
+  -v $HOME/.m2:/home/user/.m2 \
+  -v $HOME/.gradle:/home/user/.gradle \
+  -v /tmp:/tmp/templates \
+  -e DISPLAY=$DISPLAY \
+  -p 8080:8080 \
+  development
